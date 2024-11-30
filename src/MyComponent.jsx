@@ -37,9 +37,6 @@ const MyComponent = () => {
         ref={componentRef}
         className="md:container md:mx-auto  bg-indigo-500"
       >
-        <h1 className="text-3xl box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2">
-          Create your own fan photo!s
-        </h1>
         <h2>
           {btsMember.name}
           <br />
@@ -49,8 +46,7 @@ const MyComponent = () => {
 
         <img src={file} />
       </div>
-      <div className="columns-2">
-        <h2>Add Image:</h2>
+      <div className="md:container md:mx-auto">
         <input type="file" onChange={handleChange} />
         <label>
           Name:
@@ -58,18 +54,32 @@ const MyComponent = () => {
         </label>
         <label>
           Image:
-          <input value={btsMember.image} onChange={handleImageChange} />
+          <input
+            className="outline outline-offset-2 outline-blue-500"
+            value={btsMember.image}
+            onChange={handleImageChange}
+          />
         </label>
       </div>
-      <button onClick={() => exportComponentAsJPEG(componentRef)}>
-        Export As JPEG
-      </button>
-      <button onClick={() => exportComponentAsPDF(componentRef)}>
-        Export As PDF
-      </button>
-      <button onClick={() => exportComponentAsPNG(componentRef)}>
-        Export As PNG
-      </button>
+      <div className="grid space-x-4 grid-cols-4 mt-6">
+        <button onClick={() => exportComponentAsJPEG(componentRef)}>
+          Export As JPEG
+        </button>
+        <button onClick={() => exportComponentAsPDF(componentRef)}>
+          Export As PDF
+        </button>
+        <button onClick={() => exportComponentAsPNG(componentRef)}>
+          Export As PNG
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            window.print();
+          }}
+        >
+          Print
+        </button>
+      </div>
     </>
   );
 };
